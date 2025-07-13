@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konum Gösterimi</title>
+</head>
+<body>
+  <h1>Konumun</h1>
+  <p id="location">Konum alınıyor...</p>
+
+  <script>
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById("location").textContent = `Enlem: ${lat}, Boylam: ${lon}`;
+      }, function(error) {
+        document.getElementById("location").textContent = "Konum alınamadı: " + error.message;
+      });
+    } else {
+      document.getElementById("location").textContent = "Tarayıcı konum özelliğini desteklemiyor.";
+    }
+  </script>
+</body>
+</html>
